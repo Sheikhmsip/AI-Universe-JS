@@ -20,9 +20,9 @@ const displayAis = ais => {
             <div class="pl-4">
             <h3 class="card-title mb-2">Features</h3>
             <div class="pl-2">
-            <p>1. ${ai.features[0]}</p>
-            <p>2. ${ai.features[1]}</p>
-            <p>3. ${ai.features[2] ? ai.features[2] : 'No features available'}</p>
+            <p>1. }</p>
+            <p>2. }</p>
+            <p>3. </p>
             </div>
             </div>
             
