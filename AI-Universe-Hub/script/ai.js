@@ -13,8 +13,8 @@ const displayAis = ais => {
         const aisDiv = document.createElement('div');
         aisDiv.classList.add('card');
         aisDiv.innerHTML = `
-        <div class="card-body bg-base-100 shadow-xl w-[100%] mx-auto py-3 px-5 rounded-lg"">
-            <figure class="px-4 pt-5">
+        <div class="card-body bg-base-100 shadow-xl h-[98%] mx-auto py-3 px-5 rounded-lg"">
+            <figure class="">
                 <img src="${ai.image}" alt=""/ class="w-[700px]">
             </figure>
             <div class="pl-4">
@@ -26,7 +26,16 @@ const displayAis = ais => {
             </div>
             </div>
             
+            <div class="flex justify-between items-center gap-5 ">
+                <div class="pl-4">
+                    <h3 class="card-title mb-2">${ai.name}</h3>
+                    <p class="pl-1"> <i class="fa-regular fa-calendar-days"></i> ${ai.published_in ? ai.published_in : "No published date"}</p>
+                </div>
+                <div>
+                <button class="bg-[#FEFF81] h-[40px] w-[40px] rounded-full"><i class="fa-solid fa-arrow-right text-[#EB5757]"></i></button>
+                </div>
             
+             </div>
             
         </div>
         `
