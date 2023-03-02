@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
 
 </head>
+
 <body>
     <header>
 
@@ -19,27 +21,14 @@
             <div id="ai-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-2">
 
             </div>
+
+
         </section>
         <section>
-            <div class="card-actions justify-end">
-                <!-- The button to open modal -->
-                <label for="my-modal-3" class="btn mt-2" onclick="loadMealDetail(${meal.idMeal})">Details</label>
-        
-                <!-- Put this part before </body> tag -->
-                <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-                <div class="modal">
-                    <div class="modal-box relative">
-                        <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                        <h1 id="meal-title" class="text-4xl font-bold"></h1>
-                        <h2 class="text-3xl bolder">Category: <span id="category" class="text-3xl bolder"></span></h2>
-                        <h3 class="text-2xl bold">Instructions
-                        </h3>
-                        <p id="meal-instruction" class="py-4"></p>
-                    </div>
-                </div>
-                </div>
+            
+
         </section>
-        
+
     </main>
 
 
@@ -51,4 +40,5 @@
     <script src="./script/ai.js"></script>
 
 </body>
+
 </html>
