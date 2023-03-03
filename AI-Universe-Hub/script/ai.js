@@ -30,7 +30,7 @@ const displayAis = ais => {
                     <div class="pl-4">
                         <h3 class="card-title mb-2">${ai.name}</h3>
                         <p class="pl-1"> <i class="fa-regular fa-calendar-days"></i> ${ai.published_in ? ai.published_in
-                            : "No published date"}</p>
+                : "No published date"}</p>
                     </div>
                     <div class="">
                         
@@ -41,17 +41,11 @@ const displayAis = ais => {
                         
                         <input type="checkbox" id="details" class="modal-toggle" />
                         <div class="modal">
-                            <div class="modal-box relative w-11/12 max-w-5xl flex justify-between items-center gap-5">
+                            <div class="modal-box relative w-11/12 max-w-5xl flex justify-between items-center gap-5 ">
                                 <label for="details" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                <h1 id="description"></h1>
-                                <h2></h2>
-                                <h3></h3>
-                                <p></p>
-                            </div>
-                            <div>
-                            <figure class="">
-                                 <img id="modal-img" src="" alt="" / class="w-[700px]">
-                            </figure>       
+                                <div id="modal-card" class="flex justify-between items-center gap-5 mx-auto py-5 px-5 mt-5" >
+                                
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -65,19 +59,44 @@ const displayAis = ais => {
 }
 
 const loadAiDetail = id => {
-     
-    const url =`https://openapi.programming-hero.com/api/ai/tool/${id}`
+
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(url)
-    .then(res => res.json())
-    .then(data => displayAiDetais(data.data));
+        .then(res => res.json())
+        .then(data => displayAiDetais(data.data));
     // console.log(data);
-    
+
 }
 
 const displayAiDetais = ai => {
     console.log(ai);
-    document.getElementById('description').innerText = ai.description;
-    document.getElementById('modal-img').innerText = ai.image_link[1];
+    document.getElementById('modal-card').innerHTML = `
+        <div class="card  bg-base-100 shadow-xl w-[50%] h-[400px]">
+    <figure class="px-10 ">
+        <h1 class="card-title">${ai.description}</h1>
+    </figure>
+    <div class="card-body items-center text-center">
+        <h2 class="card-title">Shoes!</h2>
+        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <div class="card-actions">
+        <button class="btn btn-primary">Buy Now</button>
+        </div>
+    </div>
+    </div>
+
+    <div class="card  bg-base-100 shadow-xl w-[50%] h-[400px]">
+    <figure class="px-10">
+    <img src="${ai.image_link[0]}" alt="Shoes" class="rounded-xl h-[200px]" />
+    </figure>
+    <div class="card-body items-center text-center">
+    <h2 class="card-title">Shoes!</h2>
+    <p>If a dog chews shoes whose shoes does he choose?</p>
+    <div class="card-actions">
+        <button class="btn btn-primary">Buy Now</button>
+    </div>
+    </div>
+    </div>
+    `
 }
 // loadAiDetail()
 loadAi();
