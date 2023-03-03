@@ -1,9 +1,10 @@
+// Load Ai card data
 const loadAi = () => {
     fetch('https://openapi.programming-hero.com/api/ai/tools')
         .then(res => res.json())
         .then(data => displayAis(data.data.tools));
 }
-
+// Display Ai Card
 const displayAis = ais => {
     // console.log(ais);
     const aiContainer = document.getElementById('ai-container');
@@ -41,9 +42,9 @@ const displayAis = ais => {
                         
                         <input type="checkbox" id="details" class="modal-toggle" />
                         <div class="modal">
-                            <div class="modal-box relative w-11/12 max-w-5xl flex justify-between items-center gap-5 ">
-                                <label for="details" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                <div id="modal-card" class="flex justify-between items-center gap-5 mx-auto py-5 px-5 mt-5" >
+                            <div class="modal-box relative md:w-11/12 md:max-w-5xl flex justify-between items-center gap-5">
+                                <label for="details" class="btn btn-sm btn-circle absolute right-0 top-0">✕</label>
+                                <div id="modal-card" class="flex flex-col md:flex-row flex-col-reverse  justify-between items-center gap-5 mx-auto md:px-5 " >
                                 
                                 </div>
                             </div>
@@ -58,6 +59,8 @@ const displayAis = ais => {
 
 }
 
+// Load Ai details
+
 const loadAiDetail = id => {
 
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
@@ -67,33 +70,58 @@ const loadAiDetail = id => {
     // console.log(data);
 
 }
-
+// Display Dynamic Data
 const displayAiDetais = ai => {
     console.log(ai);
     document.getElementById('modal-card').innerHTML = `
-        <div class="card  bg-base-100 shadow-xl w-[50%] h-[400px]">
-    <figure class="px-10 ">
-        <h1 class="card-title">${ai.description}</h1>
-    </figure>
-    <div class="card-body items-center text-center">
-        <h2 class="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div class="card-actions">
-        <button class="btn btn-primary">Buy Now</button>
+        <div class="card  bg-base-100 shadow-xl md:mt-1 md:pt-0 max-h-max">
+        
+    <div class="card-body w-[100%] max-h-max">
+       <h1 class="card-title">${ai.description}</h1>
+        <div class="grid grid-cols-3 mt-2 gap-5 max-w-max">
+            <div class="bg-red-100 py-1  rounded-lg  ">
+                <h1 class="text-[#03A30A] font-bold text-center">${ai.pricing? ai.pricing[0].price : 'No price'}  ${ai.pricing ? ai.pricing[0].plan : "No plan"}</h1>
+            </div>
+            <div class="bg-red-100 py-1  rounded-lg">
+                <h1 class="text-[#F28927] font-bold text-center">${ai.pricing?  ai.pricing[1].price : 'No price'} <br> ${ai.pricing ? ai.pricing[1].plan : 'No plan'}</h1>
+            </div>
+            <div class="bg-red-100 py-1  rounded-lg">
+                <h1 class="text-[#EB5757] font-bold text-center">${ai.pricing ? ai.pricing[2].price : 'No price' } <br> ${ai.pricing ? ai.pricing[2].plan : 'No plan'}</h1>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 justify-between gap-3 mt-3">
+            <div>
+                <h1 class="text-xl font-bold">Features</h1>
+                <ul class="list-disc pl-5">
+                    <li>${ai.features[1].feature_name}</li>
+                    <li>${ai.features[2].feature_name}</li>
+                    <li>${ai.features[3].feature_name}</li>
+                </ul>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold">Integrations</h1>
+                <ul class="list-disc pl-5">
+                    <li>${(ai.integrations !== null) ? ai.integrations[0] : 'No data found'}</li>
+                    <li>${(ai.integrations !== null) ? ai.integrations[1] : 'No data found'}</li>
+                    <li>${(ai.integrations !== null) ? ai.integrations[2] : 'No data found'}</li>
+                </ul>
+            </div>
         </div>
     </div>
     </div>
 
-    <div class="card  bg-base-100 shadow-xl w-[50%] h-[400px]">
-    <figure class="px-10">
-    <img src="${ai.image_link[0]}" alt="Shoes" class="rounded-xl h-[200px]" />
+    
+
+    <div class="card md:mt-0 lg:mt-0 relative mt-[400px] w-[100%] bg-base-100 shadow-xl max-h-max">
+    <figure class="px-5">
+    <img src="${ai.image_link[0]}" alt="" class="rounded-xl"/>
+    <h1 class="absolute top-0 right-6 bg-[#EB5757] text-white px-2 rounded-lg">${ai.accuracy.score ? ai.accuracy.score : 'No' } Accuracy</h1>
     </figure>
-    <div class="card-body items-center text-center">
-    <h2 class="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div class="card-actions">
-        <button class="btn btn-primary">Buy Now</button>
-    </div>
+    <div class="card-body items-center ">
+    
+    <h2 class="card-title">${ai.input_output_examples ? ai.input_output_examples[0].input : ''}</h2>
+    <p>${ai.input_output_examples ? ai.input_output_examples[1].output.slice(0, 100) : ' '}</p>
+    
     </div>
     </div>
     `
