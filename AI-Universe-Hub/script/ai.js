@@ -33,21 +33,25 @@ const displayAis = ais => {
                             : "No published date"}</p>
                     </div>
                     <div class="">
-                        <!-- The button to open modal -->
-                        <label for="my-modal-3"
-                            class="bg-[#FEFF81] h-[40px] w-[40px] rounded-full px-3 py-2 cursor-pointer"><i
+                        
+                        <label for="details" onclick="loadAiDetail('${ai.id}')" class="bg-[#FEFF81] h-[40px] w-[40px] rounded-full px-3 py-2 cursor-pointer"><i
                                 class="fa-solid fa-arrow-right text-[#EB5757]"></i>
                         </label>
 
-                        <!-- Modal body -->
-                        <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+                        
+                        <input type="checkbox" id="details" class="modal-toggle" />
                         <div class="modal">
-                            <div class="modal-box relative">
-                                <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                                <h1></h1>
+                            <div class="modal-box relative w-11/12 max-w-5xl flex justify-between items-center gap-5">
+                                <label for="details" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                                <h1 id="description"></h1>
                                 <h2></h2>
                                 <h3></h3>
                                 <p></p>
+                            </div>
+                            <div>
+                            <figure class="">
+                                 <img id="modal-img" src="" alt="" / class="w-[700px]">
+                            </figure>       
                             </div>
                         </div>
                     </div>
@@ -60,4 +64,20 @@ const displayAis = ais => {
 
 }
 
+const loadAiDetail = id => {
+     
+    const url =`https://openapi.programming-hero.com/api/ai/tool/${id}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayAiDetais(data.data));
+    // console.log(data);
+    
+}
+
+const displayAiDetais = ai => {
+    console.log(ai);
+    document.getElementById('description').innerText = ai.description;
+    document.getElementById('modal-img').innerText = ai.image_link[1];
+}
+// loadAiDetail()
 loadAi();
