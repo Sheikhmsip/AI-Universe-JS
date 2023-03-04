@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="retro">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,11 @@
 
 <body>
     <header>
-        
+        <h1 class="text-center mt-5">AI Universe Hub</h1>
+        <!-- Sort By Date -->
+        <div class="text-center mx-auto my-5">
+            <button class="btn btn-error">Sort By Date</button>
+        </div>
     </header>
     <main>
         <!-- Card section start-->
@@ -22,11 +26,13 @@
 
             </div>
 
-
+           
         </section>
         <section>
-            
-
+             <!-- See More button -->
+             <div id="see-all"  class="text-center mx-auto my-5 hidden">
+                <button id="btn-see-all" onclick="showAllLoadAi()" class="btn btn-error">See More</button>
+            </div>
         </section>
 
     </main>
