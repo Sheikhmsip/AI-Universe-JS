@@ -1,31 +1,36 @@
-// Load Ai card data
+// Load only the first 6 cards
 const loadAi = () => {
     fetch('https://openapi.programming-hero.com/api/ai/tools')
         .then(res => res.json())
         .then(data => displayAis(data.data.tools.slice(0, 6)));
 };
 
+// Load all  card  
 const showAllLoadAi = () => {
     fetch('https://openapi.programming-hero.com/api/ai/tools')
         .then(res => res.json())
         .then(data => displayAis(data.data.tools));
 };
 
+
+
+
+
+
 // Display Ai Card
 const displayAis = ais => {
     // console.log(ais);
     const aiContainer = document.getElementById('ai-container');
+
         aiContainer.innerHTML ='';
+
         const showAll = document.getElementById('see-all');
         if (ais.length <= 6) {
             showAll.classList.remove('hidden');
         } else {
             showAll.classList.add('hidden');
         }
-    // Display only the first 6 cards
-   
-
-
+    // Add all card dynamically
     ais.forEach(ai => {
         // console.log(ai);
         const aisDiv = document.createElement('div');
@@ -73,9 +78,9 @@ const displayAis = ais => {
         `
         aiContainer.appendChild(aisDiv);
     })
-    // showAll.classList.add('hidden');
 
-
+     // Spinner stop
+     toggleSpinner(false);
 
 }
 
@@ -90,6 +95,7 @@ const loadAiDetail = id => {
     // console.log(data);
 
 }
+
 // Display Dynamic Data
 const displayAiDetais = ai => {
     console.log(ai);
@@ -100,13 +106,13 @@ const displayAiDetais = ai => {
        <h1 class="card-title">${ai.description}</h1>
         <div class="grid grid-cols-3 mt-2 gap-5 max-w-max">
             <div class="bg-red-100 py-1  rounded-lg  ">
-                <h1 class="text-[#03A30A] font-bold text-center">${ai.pricing ? ai.pricing[0].price : 'No price'} <br> ${ai.pricing ? ai.pricing[0].plan : "No plan"}</h1>
+                <h1 class="text-[#03A30A] font-bold text-center">${ai.pricing ? ai.pricing[0].price : 'Free'} <br> ${ai.pricing ? ai.pricing[0].plan : "No plan"}</h1>
             </div>
             <div class="bg-red-100 py-1  rounded-lg">
-                <h1 class="text-[#F28927] font-bold text-center">${ai.pricing ? ai.pricing[1].price : 'No price'} <br> ${ai.pricing ? ai.pricing[1].plan : 'No plan'}</h1>
+                <h1 class="text-[#F28927] font-bold text-center">${ai.pricing ? ai.pricing[1].price : 'Free'} <br> ${ai.pricing ? ai.pricing[1].plan : 'No plan'}</h1>
             </div>
             <div class="bg-red-100 py-1  rounded-lg">
-                <h1 class="text-[#EB5757] font-bold text-center">${ai.pricing ? ai.pricing[2].price : 'No price'} <br> ${ai.pricing ? ai.pricing[2].plan : 'No plan'}</h1>
+                <h1 class="text-[#EB5757] font-bold text-center">${ai.pricing ? ai.pricing[2].price : 'Free'} <br> ${ai.pricing ? ai.pricing[2].plan : 'No plan'}</h1>
             </div>
         </div>
         <div class="grid grid-cols-2 justify-between gap-3 mt-3">
@@ -135,33 +141,34 @@ const displayAiDetais = ai => {
     <div class="card md:mt-0 lg:mt-0 relative mt-[400px] w-[100%] bg-base-100 shadow-xl max-h-max">
     <figure class="px-5">
     <img src="${ai.image_link[0]}" alt="" class="rounded-xl"/>
-    <h1 class="absolute top-0 right-6 bg-[#EB5757] text-white px-2 rounded-lg">${ai.accuracy.score ? ai.accuracy.score : 'No'}% Accuracy</h1>
+    <h1 class="absolute top-0 right-6 bg-[#EB5757] text-white px-2 rounded-lg">${ai.accuracy.score ? ai.accuracy.score * 100 + '% accuracy' : ''}</h1>
     </figure>
     <div class="card-body items-center ">
     
-    <h2 class="card-title">${ai.input_output_examples ? ai.input_output_examples[0].input : ''}</h2>
-    <p>${ai.input_output_examples ? ai.input_output_examples[1].output.slice(0, 100) : ' '}</p>
+    <h2 class="card-title">${ai.input_output_examples ? ai.input_output_examples[0].input : 'Not Available'}</h2>
+    <p>${ai.input_output_examples ? ai.input_output_examples[1].output.slice(0, 100) : 'Not Available'}</p>
     
     </div>
     </div>
     `
 }
 
+// Spinner
+document.getElementById('btn-see-all').addEventListener('click', function(){
+//    Spinner Start 
+    toggleSpinner(true);
+})
 
-// show all card 
-//  add click event to see-all button
-//  showAll.addEventListener('click', (displayAis) => {
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if (isLoading) {
+        loaderSection.classList.remove('hidden');
+    }
+    else{
+        loaderSection.classList.add('hidden');
+    }
+}
 
-//     ais.forEach(ai => {
-
-
-//     });
-//     showAll.classList.add('hidden');
-// });
-
-
-
-
-
+// Function call
 
 loadAi();

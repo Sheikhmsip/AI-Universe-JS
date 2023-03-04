@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI-Universe-Hub</title>
+    <!-- connect CDN fine  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
 
@@ -13,7 +14,7 @@
 
 <body>
     <header>
-        <h1 class="text-center mt-5">AI Universe Hub</h1>
+        <h1 class="text-center mt-5 text-3xl font-bold">AI Universe Hub</h1>
         <!-- Sort By Date -->
         <div class="text-center mx-auto my-5">
             <button class="btn btn-error">Sort By Date</button>
@@ -28,16 +29,22 @@
 
            
         </section>
+        <!-- Loader section  -->
+        <section id="loader" class="text-center hidden">
+            <progress class="progress w-60"></progress>
+        </section>
+
         <section>
              <!-- See More button -->
              <div id="see-all"  class="text-center mx-auto my-5 hidden">
                 <button id="btn-see-all" onclick="showAllLoadAi()" class="btn btn-error">See More</button>
             </div>
+
         </section>
 
     </main>
 
-
+    
 
 
 
